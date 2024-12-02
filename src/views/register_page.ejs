@@ -1,5 +1,5 @@
-<% if (typeof msgDanger!='undefined') { %>
-    <div class="alert alert-warning">   <i class="fas fa-info"></i>   <%-msgDanger %>
+<% if (typeof msg!='undefined') { %>
+    <div class="alert alert-warning">   <i class="fas fa-info"></i>   <%-msg %>
 
             <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Kapat</span></button>
     </div>
@@ -18,20 +18,14 @@
                             <h1 class="h4 text-gray-900 mb-4">Hoşgeldin!</h1>
                         </div>
                         <form class="user" action="/register" method="post">
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                              
                                     <input type="text" class="form-control form-control-user" id="exampleFirstName"
                                         placeholder="Adınız"
                                         name="name"
                                         >
                                         <%# DİREK formValues.ad gelmişmi diye kontol edemiyoruz. önce formValues varmı ona sonra && ile ve diyip formValues.ad ı kontrol %>
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        placeholder="Soyadınız"
-                                        name="surname"
-                                        >
-                                </div>
+                             
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" id="exampleInputEmail"

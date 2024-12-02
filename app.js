@@ -42,6 +42,21 @@ app.use(expressLayout);
 
 
 
+
+// session konfigürasyonu
+const session = require("express-session");
+app.use(session(
+    {
+        secret:process.env.SESSION_SECRET_KEY,
+        resave: false,
+        saveUninitialized: true,
+        cookie: {  }
+    }
+));
+
+
+
+
 // server route konfigürasyonu
 app.use("/",mainRouter);
 
