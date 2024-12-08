@@ -6,7 +6,7 @@
 }
 .header{
     background-color: white;
-    width: 100vw;
+    width: 99vw;
     box-shadow: 0 8px 0 0 var(--main-color);
     padding-left: 0;
     padding-bottom: 1px;
@@ -19,6 +19,31 @@
     margin-bottom: 5px;
     background-color: var(--main-color);
 }
-
-
-
+.columns {
+  margin: 0;
+  flex-wrap: wrap;
+}
+.column {
+  padding: 10px;
+}
+.plan-card{
+  width: 20vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+}
+#favoriteButton{
+  background-color: red;
+  width: 50px;
+  height: 75px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+.favorite-icon{
+  color: white;
+  font-size: 30px;
+}
+.my-favorite{
+  background-color: deepskyblue;
+}

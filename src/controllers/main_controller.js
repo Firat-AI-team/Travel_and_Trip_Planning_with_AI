@@ -9,6 +9,14 @@ const mainPage = (req,res,next) => {
     res.render("home_page");
 }
 
+const plansPage = (req,res,next) => {
+    res.render("my_plans");
+}
+
+const planDetails = (req,res,next) => {
+    res.render("plan_details");
+}
+
 
 
 
@@ -94,4 +102,6 @@ module.exports = {
     login,
     register,
     logout,
+    plansPage,
+    planDetails
 }
