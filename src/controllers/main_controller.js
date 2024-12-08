@@ -76,6 +76,14 @@ const register = async (req,res,next) => {
 }
 
 
+const logout = (req,res,next) => {
+    if(req.session.token){
+        req.session.token = undefined;
+        req.session.msg="Çıkış Yapıldı!";
+    }
+    res.redirect("/");
+}
+
 
 
 // fonksiyonları erişilebilir yapma
@@ -85,4 +93,5 @@ module.exports = {
     registerPage,
     login,
     register,
+    logout,
 }
