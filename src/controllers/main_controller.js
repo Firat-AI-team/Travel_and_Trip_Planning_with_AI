@@ -2,12 +2,14 @@
 const authRepo = require("../repository/auth_repo");
 const tokenService = require("../services/token_service");
 
-
+const plansRepo = require("../repository/plans_repo");
 
 // Ana sayfaya istek ve yanıt denetimi
-const mainPage = (req,res,next) => {
-    res.render("home_page");
-}
+const mainPage = (req, res, next) => {
+    let plans = plansRepo.getPlans();
+    res.render("home_page", { plans });
+    
+};
 
 
 
