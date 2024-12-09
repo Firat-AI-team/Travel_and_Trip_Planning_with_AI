@@ -1,5 +1,6 @@
 const model = require("../models")
-const Plan = model.Plan
+const Plan = model.Plans
+
 const getPlans = async ()=>{
     try {
         const findPlans = await Plan.findAll();
@@ -21,7 +22,14 @@ const getPlanFromId = async (planId)=>{
         return null;
     }
 }
-
+const getPlansFromUserId = async (userId) => {
+    const plans = await Plan.findAll({ where: { userId: userId } }); 
+    if (plans.length > 0) {
+        return plans;
+    } else {
+        return null;
+    }
+};
 
 module.exports = {
     getPlans,getPlanFromId
