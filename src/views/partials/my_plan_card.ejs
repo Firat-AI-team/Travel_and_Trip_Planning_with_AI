@@ -1,0 +1,29 @@
+<a href="/plan-details/<%=locations %>" >
+  
+  <div class="myplan-card">
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <button class="favorite-button" id="favoriteButton">
+              <span class="icon favorite-icon" >
+                <i class="fas fa-heart"></i>
+              </span>
+            </button>
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4 plantext"><%=title %></p>
+        </div>
+      </div>
+  
+      <div class="content">
+        <p class="subtitle plantext"><b> Başlangıç Tarihi: </b><%=startDate %> </p>
+        <p class="subtitle plantext"><b> Bitiş Tarihi: </b><%=endDate %> </p>
+        <br />
+        <p class="plantext"><time>Seyahat ID: <%=locations %></time></p>
+      </div>
+    </div>
+  </div>
+</a>

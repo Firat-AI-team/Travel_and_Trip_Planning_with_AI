@@ -14,8 +14,11 @@ const plansPage = (req,res,next) => {
 }
 
 const planDetails = (req,res,next) => {
+    console.log(parseInt(req.params.id)) // bir plana tıklanınca gelen location id - Gelen id string olarak gelir int e çeviririz - Buradan sonra veritabanında location sorgusu yapıp location detay sayfasına yolla
     res.render("plan_details");
 }
+
+
 
 
 
