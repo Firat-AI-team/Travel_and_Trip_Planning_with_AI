@@ -16,8 +16,8 @@
       </div>
       <div class="columns is-mobile">
         <div class="column is-1 ml-2"><div class="logout">   <form action="/" method="get"><button class="button is-link" type="submit"><i class="fa fa-map info-button"></i>&nbsp Seyahatler</button></form></div></div>
-        <div class="column is-1"><div class="logout">   <form action="/plans" method="get"><button class="button is-info" type="submit" disabled><i class="fa fa-suitcase info-button"></i>&nbsp Planlarım</button></form></div></div>
-        <div class="column is-half"><div class="logout">   <form action="/" method="get"><button class="button is-warning" type="submit"><i class="fa fa-comment info-button"></i>&nbsp Seyahat Önerileri</button></form></div></div>
+        <div class="column is-1 ml-4"><div class="logout">   <form action="/plans" method="get"><button class="button is-info" type="submit" disabled><i class="fa fa-suitcase info-button"></i>&nbsp Planlarım</button></form></div></div>
+        <div class="column is-half ml-4"><div class="logout">   <form action="/suggestion" method="get"><button class="button is-warning" type="submit"><i class="fa fa-comment info-button"></i>&nbsp Seyahat Önerisi</button></form></div></div>
         <div class="column is-2"></div>
         <div class="column is-1"><div class="logout">   <form action="/logout" method="post"><button class="button is-danger" type="submit"><i class="fa fa-sign-out logout-button"></i>&nbsp Çıkış Yap</button></form></div></div>
       </div>
@@ -31,10 +31,36 @@
 
   <section class="section" id="main-content">
     <div class="columns is-multiline">
-      <div class="column p-5 is-one-third">
-        <%- include("./partials/my_plan_card.ejs",
-      {"title":"Rize Astina Dağları","startDate":"10-12-2024","endDate":"12-12-2024","locations":"3" }) %>
-      </div>
+      <% if (plans.length != 0) { %>
+        <% for( let index = 0; index < plans.length; index++ ) { %>
+          <div class="column p-5 is-one-third">
+            <%- include("./partials/my_plan_card.ejs",
+          {"title":plans[index].title,"startDate":plans[index].startDate,"endDate":plans[index].endDate,"locations":plans[index].locations }) %>
+          </div>
+        <% } %>
+        
+      <% } else {%>
+          
+        <div class="card" style="margin: auto;">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <button class="favorite-button" id="favoriteButton">
+                    <span class="icon favorite-icon" >
+                      <i class="fas fa-info"></i>
+                    </span>
+                  </button>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4"> Planınız Bulunamadı</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+      
 
     </div>
   </section>

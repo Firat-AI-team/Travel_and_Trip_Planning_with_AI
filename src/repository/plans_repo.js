@@ -23,16 +23,40 @@ const getPlanFromId = async (planId)=>{
     }
 }
 const getPlansFromUserId = async (userId) => {
-    const plans = await Plan.findAll({ where: { userId: userId } }); 
-    if (plans.length > 0) {
-        return plans;
-    } else {
-        return null;
+    try {
+        const plans = await Plan.findAll({ where: { userId: userId } }); 
+        if (plans.length > 0) {
+            return plans;
+        } else {
+            return [];
+        }
+    } catch (error) {
+        return []
     }
+    
+};
+
+const createPlan = async (body) => {
+    console.log(body.locationId)
+    try {
+        const plans = Plan.build({
+            userId: body.userId,
+            title: body.title,
+            startDate: body.startDate,
+            endDate: body.endDate,
+            locations: body.locationId
+        });
+        await plans.save();
+        return plans;
+    } catch (error) {
+        return null
+    }
+
+    
 };
 
 module.exports = {
-    getPlans,getPlanFromId
+    getPlans,getPlanFromId,getPlansFromUserId,createPlan
 }
 
 

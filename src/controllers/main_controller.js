@@ -4,26 +4,59 @@ const tokenService = require("../services/token_service");
 
 const plansRepo = require("../repository/plans_repo");
 const locationsRepo = require("../repository/locations_repo");
+
 // Ana sayfaya istek ve yanıt denetimi
-const mainPage = (req, res, next) => { //lokasyonlar
-    let locations = locationsRepo.getLocations();
-    res.render("home_page", { "locations":locations });
+const mainPage = async (req, res, next) => { //lokasyonlar
+    let locations = await locationsRepo.getLocations();  
+    let images = require("../tools/img_urls.js");
+    res.render("home_page", { "locations":locations , "images":images});
     
 };
 
-const plansPage = (req,res,next) => { // user id ye gore planlar 
-    let plans = plansRepo.getPlansFromUserId();  // enes buraya parametre olarak user id gonder route falan ne yapcaksan
+const plansPage = async (req,res,next) => {
+    let decoded = tokenService.decodeToken(req.session.token);
+    let plans = await plansRepo.getPlansFromUserId(decoded.userId); 
     res.render("my_plans", { "plans":plans });
 }
 
 
-const planDetails = (req,res,next) => {  // show plan
-      console.log(parseInt(req.params.id)) // bir plana tıklanınca gelen location id - Gelen id string olarak gelir int e çeviririz - Buradan sonra veritabanında location sorgusu yapıp location detay sayfasına yolla
-    res.render("plan_details");
+const planDetails = async (req,res,next) => {  // show plan
+    let location = await locationsRepo.getLocationFromId(parseInt(req.params.id))
+    let img = require("../tools/img_urls.js")[location.id-1];
+    res.render("plan_details",{"location":location , "imgUrl": img});
+}
+
+const addPlanPage = async (req,res,next) => {
+    let location = await locationsRepo.getLocationFromId(parseInt(req.params.id))
+    let img = require("../tools/img_urls.js")[location.id-1];
+    res.render("add_plan", { "location":location , "imgUrl": img });
+}
+
+const addPlan = async (req,res,next) => {
+    let decoded = tokenService.decodeToken(req.session.token);
+    console.log(req.body);
+    let plans = await plansRepo.createPlan({
+        userId: decoded.userId,
+        title: req.body.title,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        locationId: req.body.locationId
+    }); 
+    if(plans != null){
+        req.session.msg="Seyahat Planınız Oluşturuldu!";
+        res.redirect("/plans");
+    }else{
+        req.session.msg="Opps Plan Oluşturulamadı!";
+        res.redirect("/");
+    }
 }
 
 
-
+const suggestionPage = async (req,res,next) => {
+    let location = await locationsRepo.getRandomLocation();
+    let img = require("../tools/img_urls.js")[location.id-1];
+    res.render("suggestion_page", { "location":location , "imgUrl": img  });
+}
 
 
 
@@ -110,5 +143,8 @@ module.exports = {
     register,
     logout,
     plansPage,
-    planDetails
+    planDetails,
+    addPlan,
+    addPlanPage,
+    suggestionPage,
 }

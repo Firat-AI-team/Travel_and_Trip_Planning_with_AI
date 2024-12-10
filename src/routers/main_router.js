@@ -11,6 +11,10 @@ router.get("/plans",auth_middleware,controller.plansPage);
 
 router.get("/plan-details/:id",auth_middleware,controller.planDetails);
 
+router.get("/add-plan/:id",auth_middleware,controller.addPlanPage)
+
+router.get("/suggestion",auth_middleware,controller.suggestionPage);
+
 router.get("/login",controller.loginPage);
 
 router.get("/register",controller.registerPage);
@@ -19,6 +23,9 @@ router.get("/register",controller.registerPage);
 
 
 
+
+
+router.post("/add-plan",controller.addPlan)
 
 router.post("/login",controller.login);
 

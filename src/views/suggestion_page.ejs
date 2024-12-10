@@ -11,13 +11,13 @@
           
         </h1>
         <p class="subtitle">
-          <strong>Seyahat ve Gezi Planlama</strong> uygulamasına hoşgeldin!!
+          <strong>SEYAHAT DETAYLARI</strong>
         </p>
       </div>
       <div class="columns is-mobile">
-        <div class="column is-1 ml-2"><div class="logout">   <form action="/" method="get"><button class="button is-link" type="submit" disabled><i class="fa fa-map info-button"></i>&nbsp Seyahatler</button></form></div></div>
+        <div class="column is-1 ml-2"><div class="logout">   <form action="/" method="get"><button class="button is-link" type="submit"><i class="fa fa-map info-button"></i>&nbsp Seyahatler</button></form></div></div>
         <div class="column is-1 ml-4"><div class="logout">   <form action="/plans" method="get"><button class="button is-info" type="submit"><i class="fa fa-suitcase info-button"></i>&nbsp Planlarım</button></form></div></div>
-        <div class="column is-half ml-4"><div class="logout">   <form action="/suggestion" method="get"><button class="button is-warning" type="submit"><i class="fa fa-comment info-button"></i>&nbsp Seyahat Önerisi</button></form></div></div>
+        <div class="column is-half ml-4"><div class="logout">   <form action="/suggestion" method="get"><button class="button is-warning" type="submit" disabled><i class="fa fa-comment info-button"></i>&nbsp Seyahat Önerisi</button></form></div></div>
         <div class="column is-2"></div>
         <div class="column is-1"><div class="logout">   <form action="/logout" method="post"><button class="button is-danger" type="submit"><i class="fa fa-sign-out logout-button"></i>&nbsp Çıkış Yap</button></form></div></div>
       </div>
@@ -29,22 +29,16 @@
   
   
 
-
   <section class="section" id="main-content">
     <div class="columns is-multiline">
       
-        <% if (locations.length != 0) { %>
-          <% for( let index = 0; index < locations.length; index++ ) { %>
-            
+        <% if (location != null) { %>
             <div class="column p-5 is-one-third">
-     
-              <a href="/add-plan/<%=locations[index].id %>" >
-                <%- include("./partials/plan_card.ejs", { "isMyPlan":false , "imgUrl": images[locations[index].id - 1],
-                "name":locations[index].name,"category":locations[index].category,"description":locations[index].description,"lat":locations[index].latitude,"long":locations[index].longitude }) %>
-              </a>
-            </div>
-            
-          <% } %>
+                <a href="/add-plan/<%=location.id %>" >
+                  <%- include("./partials/plan_card.ejs", { "isMyPlan":false , "imgUrl": imgUrl,
+                  "name":location.name,"category":location.category,"description":location.description,"lat":location.latitude,"long":location.longitude }) %>
+                </a>
+              </div>
           
         <% } else {%>
             
@@ -61,7 +55,7 @@
                   </figure>
                 </div>
                 <div class="media-content">
-                  <p class="title is-4"> Seyahat Bulunamadı</p>
+                  <p class="title is-4"> Şuan İçin Size Özel Bir Öneri Bulunamadı!</p>
                 </div>
               </div>
             </div>
@@ -70,5 +64,4 @@
       
     </div>
   </section>
-  
   
