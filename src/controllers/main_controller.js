@@ -2,19 +2,23 @@
 const authRepo = require("../repository/auth_repo");
 const tokenService = require("../services/token_service");
 
-
-
+const plansRepo = require("../repository/plans_repo");
+const locationsRepo = require("../repository/locations_repo");
 // Ana sayfaya istek ve yanıt denetimi
-const mainPage = (req,res,next) => {
-    res.render("home_page");
+const mainPage = (req, res, next) => { //lokasyonlar
+    let locations = locationsRepo.getLocations();
+    res.render("home_page", { "locations":locations });
+    
+};
+
+const plansPage = (req,res,next) => { // user id ye gore planlar 
+    let plans = plansRepo.getPlansFromUserId();  // enes buraya parametre olarak user id gonder route falan ne yapcaksan
+    res.render("my_plans", { "plans":plans });
 }
 
-const plansPage = (req,res,next) => {
-    res.render("my_plans");
-}
 
-const planDetails = (req,res,next) => {
-    console.log(parseInt(req.params.id)) // bir plana tıklanınca gelen location id - Gelen id string olarak gelir int e çeviririz - Buradan sonra veritabanında location sorgusu yapıp location detay sayfasına yolla
+const planDetails = (req,res,next) => {  // show plan
+      console.log(parseInt(req.params.id)) // bir plana tıklanınca gelen location id - Gelen id string olarak gelir int e çeviririz - Buradan sonra veritabanında location sorgusu yapıp location detay sayfasına yolla
     res.render("plan_details");
 }
 
