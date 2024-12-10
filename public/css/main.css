@@ -44,6 +44,16 @@
   color: white;
   font-size: 30px;
 }
-.my-favorite{
-  background-color: deepskyblue;
+.myplan-card {
+  background-image: url('/images/myplan.png');
+  background-color: whitesmoke;
+  background-size: contain;
+  background-position: center;
+}
+.plantext{
+  background-color: white;
+  color: black;
+}
+a:hover {
+  text-decoration: none; /* Üzerine gelince alt çizgi göster */
 }

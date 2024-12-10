@@ -9,7 +9,7 @@ router.get("/",auth_middleware,controller.mainPage);
 
 router.get("/plans",auth_middleware,controller.plansPage);
 
-router.get("/plan-details",auth_middleware,controller.planDetails);
+router.get("/plan-details/:id",auth_middleware,controller.planDetails);
 
 router.get("/login",controller.loginPage);
 
